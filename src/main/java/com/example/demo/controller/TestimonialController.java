@@ -93,4 +93,24 @@ public class TestimonialController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    private static String filePath = "/Users/vikasgautam/Documents/Docs/";
+
+    @GetMapping("/testimonials/export-to-csv-new-library")
+    public ResponseEntity<Object> getTestimonialsIntoCsvApache() {
+        try{
+            String fileName = "testimonials_test_1.csv";
+//            boolean isFileCreated = csvExportService.createCsvFile(filePath, fileName);
+//            if(isFileCreated){
+//
+//            }
+            csvExportService.writeIntoFile(filePath, fileName);
+            log.info("Data successfully exported to csv file");
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            log.error("Exception in getting testimonials into csv",ex);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

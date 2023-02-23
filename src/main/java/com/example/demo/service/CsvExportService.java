@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.entities.Testimonial;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.supercsv.io.CsvBeanWriter;
@@ -49,8 +51,46 @@ public class CsvExportService {
         }
     }
 
+    public boolean createCsvFile(String filePath, String fileName){
+        try {
+            FileWriter out = new FileWriter(filePath + fileName);
+            CSVPrinter printer = CSVFormat.DEFAULT
+                    .withHeader("ID", "Text", "Name", "Module", "Status").print(out);
+            printer.flush();
+            printer.close();
+            log.info("File with name: {} created successfully",fileName);
+            return true;
+        }
+        catch (Exception ex){
+            log.error("Error in creating file with fileName: {}",fileName,ex);
+            return false;
+        }
+    }
+
+    public void writeIntoFile(String filePath, String fileName){
+        try{
+            fileName = getCurrDateTime()+".csv";
+            CSVPrinter printer = new CSVPrinter(new FileWriter(filePath + fileName), CSVFormat.DEFAULT);
+            printer.printRecord("ID", "Text", "Name", "Module", "Status");
+
+            List<Testimonial> testimonials = testimonialService.getTestimonials();
+            for(Testimonial testimonial: testimonials){
+                String[] record = {testimonial.getId().toString(), testimonial.getText(), testimonial.getName(), testimonial.getModule(), testimonial.getStatus()};
+                printer.printRecord(record);
+            }
+
+            printer.flush();
+            printer.close();
+
+        }
+        catch (Exception ex){
+            log.error("Error in writing into file",ex);
+        }
+
+    }
+
     private String getCurrDateTime(){
-        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        DateFormat dateFormatter = new SimpleDateFormat("ddMMyyHHmmss");
         return dateFormatter.format(new Date());
     }
 
