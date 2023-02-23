@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.ResourceDto;
 import com.example.demo.entities.Testimonial;
+import com.example.demo.service.CsvExportService;
 import com.example.demo.service.ExcelGeneratorService;
 import com.example.demo.service.ExcelService;
 import com.example.demo.service.TestimonialService;
@@ -28,6 +29,9 @@ public class TestimonialController {
 
     @Autowired
     ExcelService excelService;
+
+    @Autowired
+    CsvExportService csvExportService;
 
     @GetMapping("/testimonials")
     public ResponseEntity<Object> getTestimonials(HttpServletResponse httpServletResponse) {
@@ -73,6 +77,19 @@ public class TestimonialController {
         }
         catch (Exception ex){
             log.error("Exception in getting testimonials into excel",ex);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/testimonials/export-to-csv")
+    public ResponseEntity<Object> getTestimonialsIntoCsv() {
+        try{
+            csvExportService.exportTestimonialsToCsv();
+            log.info("Data successfully exported to csv file");
+            return new ResponseEntity<>(null, HttpStatus.OK);
+        }
+        catch (Exception ex){
+            log.error("Exception in getting testimonials into csv",ex);
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
