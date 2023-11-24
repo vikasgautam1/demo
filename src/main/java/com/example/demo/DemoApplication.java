@@ -1,6 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.principle.ocp.SuperHeroGame;
+import com.example.demo.principle.lsp.violation.SalaryDisburserSimulator;
+import com.example.demo.principle.ocp.violation.SuperHeroGame;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,7 +15,8 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 		System.out.println("Everything is working fine...!");
 		System.out.println(getDateWithHoursBuffer(-24));
-		superHeroGame();
+		ocpSuperHeroGame();
+		lspSalaryDisburserSimulator();
 	}
 
 	public static Date getDateWithHoursBuffer(Integer hours){
@@ -23,9 +25,14 @@ public class DemoApplication {
 		return c.getTime();
 	}
 
-	public static void superHeroGame(){
+	private static void ocpSuperHeroGame(){
 		SuperHeroGame superHeroGame = new SuperHeroGame();
 		superHeroGame.start();
+	}
+
+	private static void lspSalaryDisburserSimulator(){
+		SalaryDisburserSimulator salaryDisburserSimulator = new SalaryDisburserSimulator();
+		salaryDisburserSimulator.simulate();
 	}
 
 }

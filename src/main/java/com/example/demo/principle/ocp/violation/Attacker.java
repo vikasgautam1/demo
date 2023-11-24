@@ -1,6 +1,4 @@
-package com.example.demo.principle.ocp.service;
-
-import com.example.demo.principle.ocp.handler.SuperHero;
+package com.example.demo.principle.ocp.violation;
 
 import java.util.List;
 

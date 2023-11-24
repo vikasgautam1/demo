@@ -1,10 +1,4 @@
-package com.example.demo.principle.ocp;
-
-import com.example.demo.principle.ocp.handler.BatMan;
-import com.example.demo.principle.ocp.handler.CaptainAmerica;
-import com.example.demo.principle.ocp.handler.SuperHero;
-import com.example.demo.principle.ocp.handler.SuperMan;
-import com.example.demo.principle.ocp.service.Attacker;
+package com.example.demo.principle.ocp.violation;
 
 import java.util.ArrayList;
 import java.util.List;

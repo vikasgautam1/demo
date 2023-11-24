@@ -1,0 +1,8 @@
+LSP stands for Liskov Substitution Principle.
+
+Points come out:
+1. Never use inheritance for code reuse.
+2. Use inheritance only and only if there is a strict 'is a/an' relation.
+like --> FullTime is an employee, Intern is an employee but Volunteer is not an employee
+
+Definition: Subtype must be substitutable for their base type.
