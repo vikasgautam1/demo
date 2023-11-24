@@ -6,3 +6,7 @@ Points come out:
 like --> FullTime is an employee, Intern is an employee but Volunteer is not an employee
 
 Definition: Subtype must be substitutable for their base type.
+
+So the implementation of Volunteer Employee is wrong. Volunteer should not come under employee.
+Create multiple interfaces if needed, this is what this principle stats.
+Please see cricketGameSimulator for this principle.
