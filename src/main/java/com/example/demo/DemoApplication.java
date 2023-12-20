@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.config.EnvironmentModifier;
 import com.example.demo.principle.lsp.violation.SalaryDisburserSimulator;
 import com.example.demo.principle.ocp.violation.SuperHeroGame;
+import com.example.demo.service.PartitionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,12 +25,13 @@ public class DemoApplication {
 	@Autowired
 	EnvironmentModifier environmentModifier;
 
-	public static void main(String[] args) throws JsonProcessingException {
+	public static void main(String[] args) throws JsonProcessingException, ParseException {
 		SpringApplication.run(DemoApplication.class, args);
 		System.out.println("Everything is working fine...!");
 		System.out.println(getDateWithHoursBuffer(-24));
 		ocpSuperHeroGame();
 		lspSalaryDisburserSimulator();
+		//PartitionService.generatePartitions();
 	}
 
 	public static Date getDateWithHoursBuffer(Integer hours){
