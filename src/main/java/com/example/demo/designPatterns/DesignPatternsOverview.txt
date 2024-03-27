@@ -1,0 +1,8 @@
+* Design patterns:
+Design patterns are well proved solution of most commonly occurring problems in software design.
+Design patterns represents an idea.
+
+* Categorization of design patterns:
+1. Creational Design pattern: Singleton design pattern, Factory design pattern, Builder design pattern
+2. Structural Design pattern: Proxy design pattern, Adapter design pattern
+3. Behavioural Design pattern: Observer pattern state design pattern, Iterator pattern design pattern
