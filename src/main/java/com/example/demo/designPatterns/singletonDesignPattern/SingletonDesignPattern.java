@@ -1,4 +1,4 @@
-package com.example.demo.designPatterns;
+package com.example.demo.designPatterns.singletonDesignPattern;
 
 import com.example.demo.DemoApplication;
 import com.example.demo.service.Samosa;
